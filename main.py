@@ -8,7 +8,7 @@ app.register_blueprint(api_bp, url_prefix='/api')
 
 @app.route('/', methods=['GET'])
 def get_books():
-    return jsonify('welcome to my docker app.')
+    return jsonify('welcome to my docker app edited.')
 
 
 if __name__ == '__main__':

@@ -1,5 +1,5 @@
                                 DOCKER
-Docker is a platform that allows you to develop, ship, and run applications inside containers. 
+Docker is a platform that allows you to develop, ship, and run applications inside containers. and deploy as one package.
 Containers are lightweight, standalone, and executable software packages that include everything needed to run a piece of software, 
 including the code, runtime, libraries, and system tools.
 
@@ -23,24 +23,52 @@ Images are BLUEPRINT for containers. they contain below
 - commands
 
 
+
+                                DOCKER VOLUMES
+
+Docker volume is a way to store data outside of a Docker container. 
+It allows you to persist data across container restarts and share data between containers.
+
+This is a feature of docker that allows us to specify folders on our host computer that can be made available to running containers,
+and we can map those folders on our host computer to specific folders inside the container,
+so that if something change in those folders on our host computer,
+that change will also be reflected to those folders we mapped to inside the container. 
+
+*Note* The image the container is running does not change itself. 
+So if we want to update the image to share with others or create new containers, we have to rebuild the image using docker build. 
+
+
+
+
                                 BUILD AN IMAGE 
 docker build -t <TAG NAME> .
 docker build -t flask-docker -f api/Dockerfile .
 
+
                                 BUILD AN IMAGE GIVING IT A VERSION NUMBER
 docker build -t <TAG NAME>:<VERSION NUMBER> .
+
 
                                 LIST OF IMAGES
 docker images
 
+
                                 RUN AN IMAGE / CREATE A CONTAINER
 docker run --name <container name> <image name>
 
+
                                 RUN AN IMAGE / CREATE A CONTAINER MAPPING CONTAINER'S PORT TO OUR COMPUTER'S PORT
-docker run --name <container name> -P 4000:4000 -d <image name>
+docker run --name <container name> -p 4000:4000 -d <image name>
+
 
                                 RUN AN IMAGE WITH VERSION NUMBEDR
-docker run --name <container name> -P 4000:4000 -d <image name>:<VERSION NUMBER>
+docker run --name <container name> -p 4000:4000 -d <image name>:<VERSION NUMBER>
+
+
+                                RUN AN IMAGE WITH WITH DOCKER VOLUME WITHOUT DOCKER COMPOSE
+*add this to the docker file beneath "ENV FLASK_APP=main.py"*  ENV FLASK_ENV=development
+docker run --name flask-docker-container -p 4000:4000 -v $(pwd):/app -d flask-docker-image
+
 
                                 LIST OF RUNNNING CONTAINERS
 docker ps
