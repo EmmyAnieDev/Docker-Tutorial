@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  api-directory:
+    build:
+      context: .
+      dockerfile: api/Dockerfile
+    ports:
+      - "4000:4000"
+    volumes:
+      - .:/app
+    environment:
+      FLASK_APP: main.py
+      FLASK_ENV: development

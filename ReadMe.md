@@ -40,6 +40,14 @@ So if we want to update the image to share with others or create new containers,
 
 
 
+                                DOCKER COMPOSE
+Docker Compose is a tool for defining and running multi-container Docker applications. 
+It allows you to define your application's services, networks, and volumes in a docker-compose.yml file, 
+which makes it easier to manage and run your Docker environment.
+
+
+
+
                                 BUILD AN IMAGE 
 docker build -t <TAG NAME> .
 docker build -t flask-docker -f api/Dockerfile .
@@ -68,6 +76,14 @@ docker run --name <container name> -p 4000:4000 -d <image name>:<VERSION NUMBER>
                                 RUN AN IMAGE WITH WITH DOCKER VOLUME WITHOUT DOCKER COMPOSE
 *add this to the docker file beneath "ENV FLASK_APP=main.py"*  ENV FLASK_ENV=development
 docker run --name flask-docker-container -p 4000:4000 -v $(pwd):/app -d flask-docker-image
+
+
+                                BUILD AND RUN AN IMAGE USING DOCKER COMPOSE
+docker-compose up --build
+
+
+                                STOP THE CONTAINERS
+docker-compose down
 
 
                                 LIST OF RUNNNING CONTAINERS
